@@ -9,7 +9,7 @@ const steps = [
   },
   {
     icon: <ClipboardCheck className="w-12 h-12 text-green-700" />,
-    title: "Submit Application",
+    title: "Fill Application",
     description: "Fill out a simple adoption application and get approved.",
   },
   {
@@ -19,7 +19,7 @@ const steps = [
   },
   {
     icon: <Home className="w-12 h-12 text-green-700" />,
-    title: "Bring Them Home",
+    title: "Welcome Home!",
     description: "Finalize the adoption and welcome your new pet home.",
   },
 ];
@@ -27,16 +27,19 @@ const steps = [
 export default function Adopt() {
   return (
     <section className="w-full bg-green-50 py-16 px-6 text-center">
-      <h2 className="text-4xl font-bold text-green-700">Adopt in 4 Easy Steps</h2>
-      <div className="mt-8 flex flex-wrap justify-center gap-6">
+      <h2 className="text-4xl font-bold text-green-700">Our Adoption Process</h2>
+      <div className="mt-10 flex flex-wrap justify-center gap-6">
         {steps.map((step, index) => (
-          <Card key={index} className="w-64 bg-white shadow-md">
-            <CardHeader className="flex flex-col items-center">
+          <Card
+            key={index}
+            className="w-64 h-74 bg-white shadow-md transition-transform transform hover:scale-105 hover:shadow-lg flex flex-col justify-between p-6"
+          >
+            <CardHeader className="flex flex-col items-center mt-4">
               {step.icon}
-              <CardTitle className="text-xl font-semibold mt-2">{step.title}</CardTitle>
+              <CardTitle className="text-xl font-semibold mt-5">{step.title}</CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-gray-700">{step.description}</p>
+            <CardContent className="flex-grow flex items-center">
+              <p className="text-gray-700 text-center">{step.description}</p>
             </CardContent>
           </Card>
         ))}
