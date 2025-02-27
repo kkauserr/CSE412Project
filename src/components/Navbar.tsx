@@ -49,7 +49,7 @@ export default function Navbar() {
             <Menu className="w-6 h-6 text-green-700" />
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="bg-white p-6">
+        <SheetContent side="right" className="bg-white p-6">
           <div className="flex flex-col space-y-6">
             <Link href="/" className="text-green-600 text-lg" onClick={() => setIsOpen(false)}>Home</Link>
             <Link href="/about" className="text-green-600 text-lg" onClick={() => setIsOpen(false)}>About</Link>
