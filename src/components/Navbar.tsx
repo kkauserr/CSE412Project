@@ -11,14 +11,14 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="w-full bg-white shadow-md py-4 px-6 flex items-center justify-between">
+    <nav className="w-full bg-white shadow-md py-4 px-6 flex items-center">
       {/* Logo */}
       <Link href="/" className="text-green-700 text-2xl font-bold">
         PetAdopt 🐾
       </Link>
 
-      {/* Desktop Navigation */}
-      <div className="hidden md:flex gap-6">
+      {/* Desktop Navigation + Button */}
+      <div className="hidden md:flex items-center space-x-6 ml-auto">
         <NavigationMenu>
           <NavigationMenuList className="flex gap-6">
             <NavigationMenuItem>
@@ -35,17 +35,17 @@ export default function Navbar() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-      </div>
 
-      {/* Get Started Button */}
-      <Button className="hidden md:flex bg-green-600 hover:bg-green-700 text-white">
-        Get Started
-      </Button>
+        {/* Sign In Button */}
+        <Button className="bg-green-600 hover:bg-green-700 text-white">
+          Sign In
+        </Button>
+      </div>
 
       {/* Mobile Navigation */}
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon" className="md:hidden">
+          <Button variant="ghost" size="icon" className="md:hidden ml-auto">
             <Menu className="w-6 h-6 text-green-700" />
           </Button>
         </SheetTrigger>
@@ -55,7 +55,7 @@ export default function Navbar() {
             <Link href="/about" className="text-green-600 text-lg" onClick={() => setIsOpen(false)}>About</Link>
             <Link href="/adopt" className="text-green-600 text-lg" onClick={() => setIsOpen(false)}>Adopt</Link>
             <Link href="/contact" className="text-green-600 text-lg" onClick={() => setIsOpen(false)}>Contact</Link>
-            <Button className="bg-green-600 hover:bg-green-700 text-white">Get Started</Button>
+            <Button className="bg-green-600 hover:bg-green-700 text-white">Sign In</Button>
           </div>
         </SheetContent>
       </Sheet>
