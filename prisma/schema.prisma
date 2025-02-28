@@ -1,35 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 model User {
-  id       Int      @id @default(autoincrement())
-  email    String   @unique
+  id       String  @id @default(uuid())
   name     String?
-  // Add other fields as needed
-  applications AdoptionApplication[]
-}
-
-model Pet {
-  id           Int      @id @default(autoincrement())
-  name         String
-  breed        String
-  energyLevel  String
-  status       String   @default("Available")
-  // Add other fields as needed
-  applications AdoptionApplication[]
-}
-
-model AdoptionApplication {
-  id      Int   @id @default(autoincrement())
-  user    User  @relation(fields: [userId], references: [id])
-  userId  Int
-  pet     Pet   @relation(fields: [petId], references: [id])
-  petId   Int
-  status  String  @default("Pending")
+  email    String  @unique
+  password String?
 }
