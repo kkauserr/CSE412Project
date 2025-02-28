@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <section className="w-full bg-white py-16 px-6 flex justify-center">
+    <section id="about" className="w-full bg-white py-16 px-6 flex justify-center">
       <div className="max-w-5xl w-full flex flex-col md:flex-row items-center gap-6">
         {/* Left Side: Text Content */}
         <div className="md:w-1/2 text-center md:text-left">

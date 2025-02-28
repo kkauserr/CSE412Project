@@ -26,7 +26,7 @@ const steps = [
 
 export default function Adopt() {
   return (
-    <section className="w-full bg-green-50 py-16 px-6 text-center">
+    <section id="adopt" className="w-full bg-green-50 py-16 px-6 text-center">
       <h2 className="text-4xl font-bold text-green-700">Our Adoption Process</h2>
       <div className="mt-10 flex flex-wrap justify-center gap-6">
         {steps.map((step, index) => (
