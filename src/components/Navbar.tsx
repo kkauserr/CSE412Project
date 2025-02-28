@@ -30,7 +30,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`w-full bg-white shadow-md py-4 px-6 flex items-center fixed top-0 left-0 right-0 transition-transform duration-300 ${
+      className={`z-10 w-full bg-white shadow-md py-4 px-6 flex items-center fixed top-0 left-0 right-0 transition-transform duration-300 ${
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
@@ -50,8 +50,8 @@ export default function Navbar() {
       {/* Mobile Navigation */}
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon" className="md:hidden ml-auto">
-            <Menu className="w-6 h-6 text-green-700" />
+          <Button variant="ghost" className="md:hidden ml-auto">
+            <Menu size={30} className="text-green-700" />
           </Button>
         </SheetTrigger>
         <SheetContent side="right" className="bg-white p-6">
