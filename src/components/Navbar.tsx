@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
+import { signIn } from "next-auth/react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +28,6 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollY]);
-
   return (
     <nav
       className={`z-10 w-full bg-white shadow-md py-4 px-6 flex items-center fixed top-0 left-0 right-0 transition-transform duration-300 ${
@@ -41,10 +41,21 @@ export default function Navbar() {
 
       {/* Desktop Navigation + Button */}
       <div className="hidden md:flex items-center space-x-6 ml-auto">
-        <Link href="#about" className="text-green-600 hover:text-green-800">About</Link>
-        <Link href="#adopt" className="text-green-600 hover:text-green-800">Adopt</Link>
-        <Link href="#contact" className="text-green-600 hover:text-green-800">Contact</Link>
-        <Button className="bg-green-600 hover:bg-green-700 text-white">Sign In</Button>
+        <Link href="#about" className="text-green-600 hover:text-green-800">
+          About
+        </Link>
+        <Link href="#adopt" className="text-green-600 hover:text-green-800">
+          Adopt
+        </Link>
+        <Link href="#contact" className="text-green-600 hover:text-green-800">
+          Contact
+        </Link>
+        <Button
+          onClick={() => signIn()}
+          className="bg-green-600 hover:bg-green-700 text-white"
+        >
+          Sign In
+        </Button>
       </div>
 
       {/* Mobile Navigation */}
@@ -56,10 +67,33 @@ export default function Navbar() {
         </SheetTrigger>
         <SheetContent side="right" className="bg-white p-6">
           <div className="flex flex-col space-y-6">
-            <Link href="#about" className="text-green-600 text-lg" onClick={() => setIsOpen(false)}>About</Link>
-            <Link href="#adopt" className="text-green-600 text-lg" onClick={() => setIsOpen(false)}>Adopt</Link>
-            <Link href="#contact" className="text-green-600 text-lg" onClick={() => setIsOpen(false)}>Contact</Link>
-            <Button className="bg-green-600 hover:bg-green-700 text-white">Sign In</Button>
+            <Link
+              href="#about"
+              className="text-green-600 text-lg"
+              onClick={() => setIsOpen(false)}
+            >
+              About
+            </Link>
+            <Link
+              href="#adopt"
+              className="text-green-600 text-lg"
+              onClick={() => setIsOpen(false)}
+            >
+              Adopt
+            </Link>
+            <Link
+              href="#contact"
+              className="text-green-600 text-lg"
+              onClick={() => setIsOpen(false)}
+            >
+              Contact
+            </Link>
+            <Button
+              onClick={() => signIn()}
+              className="bg-green-600 hover:bg-green-700 text-white"
+            >
+              Sign In
+            </Button>
           </div>
         </SheetContent>
       </Sheet>
