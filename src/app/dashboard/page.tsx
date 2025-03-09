@@ -11,7 +11,7 @@ export default async function Dashboard() {
   return (
     <div className="p-6 mt-20">
       <h1 className="text-3xl font-bold">Welcome, {session.user?.name}!</h1>
-      <p>This is the dashboard WORK IN PROGRESS</p>
+      <p>This is the dashboard.</p>
     </div>
   );
 }
