@@ -1,102 +1,80 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
-import { signIn } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [prevScrollY, setPrevScrollY] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
+  const { data: session } = useSession();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY > prevScrollY && currentScrollY > 100) {
-        setIsVisible(false); // Hide navbar when scrolling down
-      } else {
-        setIsVisible(true); // Show navbar when scrolling up
-      }
-
-      setPrevScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [prevScrollY]);
   return (
-    <nav
-      className={`z-10 w-full bg-white shadow-md py-4 px-6 flex items-center fixed top-0 left-0 right-0 transition-transform duration-300 ${
-        isVisible ? "translate-y-0" : "-translate-y-full"
-      }`}
-    >
-      {/* Logo */}
-      <Link href="/" className="text-green-700 text-2xl font-bold">
-        PetAdopt 🐾
-      </Link>
-
-      {/* Desktop Navigation + Button */}
-      <div className="hidden md:flex items-center space-x-6 ml-auto">
-        <Link href="#about" className="text-green-600 hover:text-green-800">
-          About
-        </Link>
-        <Link href="#adopt" className="text-green-600 hover:text-green-800">
-          Adopt
-        </Link>
-        <Link href="#contact" className="text-green-600 hover:text-green-800">
-          Contact
-        </Link>
-        <Button
-          onClick={() => signIn()}
-          className="bg-green-600 hover:bg-green-700 text-white"
-        >
-          Sign In
-        </Button>
-      </div>
-
-      {/* Mobile Navigation */}
-      <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        <SheetTrigger asChild>
-          <Button variant="ghost" className="md:hidden ml-auto">
-            <Menu size={30} className="text-green-700" />
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="right" className="bg-white p-6">
-          <div className="flex flex-col space-y-6">
-            <Link
-              href="#about"
-              className="text-green-600 text-lg"
-              onClick={() => setIsOpen(false)}
-            >
-              About
+    <nav className="bg-primary shadow-md">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-20">
+          <div className="flex items-center space-x-8">
+            <Link href="/" className="flex items-center">
+              <span className="text-white text-2xl md:text-3xl font-bold tracking-tight hover:text-primary-foreground/90 transition-colors duration-200">
+                PetPal
+              </span>
             </Link>
-            <Link
-              href="#adopt"
-              className="text-green-600 text-lg"
-              onClick={() => setIsOpen(false)}
-            >
-              Adopt
-            </Link>
-            <Link
-              href="#contact"
-              className="text-green-600 text-lg"
-              onClick={() => setIsOpen(false)}
-            >
-              Contact
-            </Link>
-            <Button
-              onClick={() => signIn()}
-              className="bg-green-600 hover:bg-green-700 text-white"
-            >
-              Sign In
-            </Button>
+            <div className="hidden md:block">
+              <div className="flex items-center space-x-6">
+                <Link
+                  href="/pets"
+                  className="text-white/90 hover:text-white font-medium px-3 py-2 rounded-md transition-colors duration-200"
+                >
+                  Find Pets
+                </Link>
+                <Link
+                  href="/shelters"
+                  className="text-white/90 hover:text-white font-medium px-3 py-2 rounded-md transition-colors duration-200"
+                >
+                  Shelters
+                </Link>
+                <Link
+                  href="/about"
+                  className="text-white/90 hover:text-white font-medium px-3 py-2 rounded-md transition-colors duration-200"
+                >
+                  About
+                </Link>
+              </div>
+            </div>
           </div>
-        </SheetContent>
-      </Sheet>
+
+          <div className="flex items-center space-x-6">
+            {session ? (
+              <div className="flex items-center space-x-6">
+                <Link
+                  href="/profile"
+                  className="text-white/90 hover:text-white font-medium px-3 py-2 rounded-md transition-colors duration-200"
+                >
+                  Profile
+                </Link>
+                <button
+                  onClick={() => signOut()}
+                  className="bg-white text-primary hover:bg-primary-foreground/10 hover:text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 border-2 border-transparent hover:border-white"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center space-x-4">
+                <Link
+                  href="/auth/login"
+                  className="text-white/90 hover:text-white font-medium px-3 py-2 rounded-md transition-colors duration-200"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/auth/register"
+                  className="bg-white text-primary hover:bg-primary-foreground/10 hover:text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 border-2 border-transparent hover:border-white"
+                >
+                  Register
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </nav>
   );
 }
