@@ -36,6 +36,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 **Contributors note**
+
 Includes my work on implementing secure user authentication for pet adoption platform. 
 I integrated NextAuth.js with a PostgreSQL adapter for persistent authentication, configured role-based access control for adopters and shelter admins and implemented Argon2/Bcrypt password hashing for enhanced security. 
 My contributions ensured a reliable and secure access management with modern best practices.
